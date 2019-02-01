@@ -11,13 +11,19 @@ package com.fish.center.service;
  */
 public interface ServiceCenter {
     /**
-     *  数据处理,将数据处理成所需要的json数据
-     * @param token 令牌,用于获取对应缓存中的数据
-     * @param flag 标记,通常用于标记事件
-     * @param clazz 通过某类型数据转成json数据
+     *  处理数据分拣数据,将数据过滤赛选到属于对应业务模型List中
+     * @param token
+     */
+   void dataDisposeSorting(String token);
+
+    /**
+     * 获取消息
+     * @param token
+     * @param flag
+     * @param clazz
      * @param <T>
      * @return
      */
-    <T> String dataDisposeForJson(String token,String flag,Class<T> clazz);
+    <T> String getAutoClickMessage(String token,String flag,Class<T> clazz);
 
 }

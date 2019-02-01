@@ -1,5 +1,11 @@
 package com.fish.center.bean;
 
+import org.springframework.stereotype.Component;
+
+/**
+ * @author 一条小咸鱼
+ */
+@Component
 public class AutoClickBean extends  BaseBusinessDataBean{
 
     private String event;

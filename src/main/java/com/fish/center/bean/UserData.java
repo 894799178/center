@@ -2,6 +2,9 @@ package com.fish.center.bean;
 
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @ProjectName: center
  * @Package: com.fish.center.bean
@@ -15,31 +18,39 @@ import org.springframework.stereotype.Component;
 public class UserData extends BaseHttpBean{
 
     /**
-     * 存储数据,存储空间默认500
+     * 存储缓存数据
      */
-    private String [] data = new String[500];
+    private List<String> data = new LinkedList<>();
     /**
      *  游标指针,指向当前所需要覆盖的位置
      */
     private int  cursor = 0;
+    /**
+     * 遍历全数组的次数
+     */
+    private int turns = -1;
 
-    public String[] getData() {
+    public List<String>  getData() {
         return data;
     }
 
-    public void setData(String[] data) {
+    public void setData(LinkedList data) {
         this.data = data;
     }
 
-    /**
-     * 返回游标的数据
-     * @return 通过data的长度限制的了cursor值在数组的范围内.
-     */
     public int getCursor() {
-        return cursor % data.length;
+        return cursor;
     }
 
     public void setCursor(int cursor) {
         this.cursor = cursor;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public void setTurns(int turns) {
+        this.turns = turns;
     }
 }

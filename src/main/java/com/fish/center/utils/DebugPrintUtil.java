@@ -1,10 +1,10 @@
-package com.fish.center.Utils;
+package com.fish.center.utils;
 
 import java.util.List;
 
 /**
  * @ProjectName: center
- * @Package: com.fish.center.Utils
+ * @Package: com.fish.center.utils
  * @ClassName: PrintUtil
  * @Author: 一条小咸鱼
  * @Description: 一些打印工具用于调试
@@ -19,6 +19,9 @@ public class DebugPrintUtil {
      */
     public static <T> void printNotNull(List<T> list){
         //仅用于调试
+        if(list == null){
+            return;
+        }
         for (T item:list) {
             if(item!=null){
                 System.out.println(item.toString());

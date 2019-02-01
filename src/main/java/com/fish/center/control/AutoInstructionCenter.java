@@ -31,6 +31,6 @@ public class AutoInstructionCenter {
         //BaseBusinessDataBean
         String token = baseBusinessDataBean.getToken();
         String flag = baseBusinessDataBean.getFlag();
-        return  serviceCenter.dataDisposeForJson(token,flag,AutoClickBean.class);
+        return  null;
     }
 }
