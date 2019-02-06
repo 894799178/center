@@ -54,7 +54,7 @@ public class DataProcessImpl extends BaseService implements DataProcess {
      * @return
      */
     private UserData addDataByStringList(UserData userData,List<String> list){
-        LinkedList data = (LinkedList) userData.getData();
+        List data = userData.getData();
         int cursor = userData.getCursor();
         for (String item:list) {
             data.add(item);
