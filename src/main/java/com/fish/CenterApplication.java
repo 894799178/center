@@ -1,7 +1,9 @@
 package com.fish;
 
 import com.fish.center.bean.AutoClickBean;
+import com.fish.center.bean.DamageBean;
 import com.fish.center.bean.UserData;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.*;
 
 @SpringBootApplication
+@MapperScan("com.fish.center.mapper")
 public class CenterApplication {
 
     public static void main(String[] args) {
@@ -34,6 +37,15 @@ public class CenterApplication {
         return new HashMap<>(5);
     }
 
+
+    /**
+     * 伤害测试bean
+     * @return
+     */
+    @Bean(name="damageTestBeans")
+    public  Map<String, List<DamageBean>> getDamageTestBean(){
+        return new HashMap<>(5);
+    }
 
 }
 

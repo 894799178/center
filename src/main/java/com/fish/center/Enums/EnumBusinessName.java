@@ -7,7 +7,7 @@ public enum EnumBusinessName {
     /**
      * 自动点击bean 对应的值.
      */
-    AUTO_CLICK_EVENT(1);
+    AutoClickBean(1),DamageTest(2);
 
     /**
      * 业务名

@@ -11,7 +11,7 @@ public class EnumUtil {
             EnumBusinessName enumBusinessName = EnumBusinessName.valueOf(name);
             result = enumBusinessName.getValue();
         }catch (IllegalArgumentException e){
-            System.err.println("不存在的枚举名字-->"+name);
+            throw new IllegalArgumentException("不存在的枚举名字-->"+name);
         }
         return result;
     }

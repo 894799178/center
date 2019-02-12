@@ -1,14 +1,16 @@
 package com.fish.center.control;
 
-import com.fish.center.bean.AutoClickBean;
 import com.fish.center.bean.BaseBusinessDataBean;
+import com.fish.center.model.DamageData;
 import com.fish.center.service.ServiceCenter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ProjectName: center
@@ -30,7 +32,12 @@ public class AutoInstructionCenter {
     public String getAutoMessage(@RequestBody BaseBusinessDataBean baseBusinessDataBean){
         //BaseBusinessDataBean
         String token = baseBusinessDataBean.getToken();
-        String flag = baseBusinessDataBean.getFlag();
-        return  null;
+        return  serviceCenter.getAutoClickMessage(token);
+    }
+
+    @PostMapping(value = "/updateData")
+    @ResponseBody
+    public void updateData(@RequestBody List<DamageData> datas){
+
     }
 }

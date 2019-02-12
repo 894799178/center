@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="/easyUI/1.5.5.4/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/easyUI/1.5.5.4/locale/easyui-lang-zh_CN.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+	
+    <title>Title</title>
+</head>
+<body>
+    <div id="container" style="min-width:400px;height:400px"></div>
+    <a id="atk"></a>
+    <a id="hp"></a>
+    typeId:<input type="text" id="input_text" />
+    <button id="_btn" onclick="print()">查询</button>
+    <script>
+        var count = 0;
+        var arrIsCrit = new Array();
+        var totalDamage = 0;
+        var objects = new Array();
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+        function activeLastPointToolip(chart) {
+            var points = chart.series[0].points;
+            chart.tooltip.refresh(points[points.length -1]);
+        }
+        var chart = Highcharts.chart('container', {
+            chart: {
+                type: 'spline',
+                marginRight: 10,
+                events: {
+                    load: function () {
+                        var series = this.series[0],
+                            chart = this;
+                        
+                    }
+                }
+            },
+            title: {
+                text: '伤害监控'
+            },
+            xAxis: {
+                tickPixelInterval: 50
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                minorTickLength: 10
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>第' +
+                        (this.x+1) + '次<br/>伤害:' +
+                        this.y+"-->"+arrIsCrit[this.x] ;
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            series: [{
+                name: '伤害监控'
+            }]
+        });
+        function getData(){
+            var result  = requestFormAjax("http://localhost:8080/damageTestControl/getDamegeData",false);
+            return result;
+        }
+        function print(){
+			var typeId= $("#input_text").val();
+            count=0;
+            if(typeId.length <=0){
+                alert("请输入typeId");
+                return;
+            }
+			var item1 = chart.series[0];
+            var totalDamage = 0;
+            var arr =  new Array();
+			$.ajax({
+				url:"http://localhost:8080/damageTestControl/getDamageDataByTypeId?typeId="+typeId,
+				async:false,
+				success:function(data){  
+					$.each(data,function(index,item){
+                        objects.push(item);
+						var x =  parseInt(item.pointX);
+						var y = parseInt(item.pointY);
+                        arrIsCrit[count++] = item.isCrit;
+                        totalDamage+=y;
+                        arr.push({
+                            x: x,
+                            y: y
+                        })
+					})
+                    var title = {
+                        text:"总伤害:"+ totalDamage
+                    };
+                    chart.setTitle(title);
+                    item1.update({
+                        data:arr
+                    });
+				}
+			  });  
+		
+        }
+        //页面加载完后,在加载js
+        $(function (){
+			console.log("2333333")
+        });
+      function requestFormAjax(url,async){
+          var result;
+          $.ajax({
+              url:url,
+              type:"post",
+              async:async,
+              success:function(data){
+                  if( data != null && data != ""){
+                      result =  eval('(' + data + ')');
+                  }
+              }
+          })
+          return result;
+      }
+    </script>
+</body>
+</html>

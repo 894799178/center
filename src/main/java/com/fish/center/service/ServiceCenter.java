@@ -17,13 +17,17 @@ public interface ServiceCenter {
    void dataDisposeSorting(String token);
 
     /**
-     * 获取消息
+     * 获取自动化点击消息
      * @param token
-     * @param flag
-     * @param clazz
-     * @param <T>
      * @return
      */
-    <T> String getAutoClickMessage(String token,String flag,Class<T> clazz);
+    String getAutoClickMessage(String token);
+
+    /**
+     * 获取伤害测试的信息
+     * @param token
+     * @return
+     */
+    String getDamageMessage(String token);
 
 }

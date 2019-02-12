@@ -71,14 +71,5 @@ public class DamageBean extends  BaseBusinessDataBean {
         this.hp = hp;
     }
 
-    @Override
-    public String toString() {
-        return "DamageBean{" +
-                "damageNumber='" + damageNumber + '\'' +
-                ", isCrit='" + isCrit + '\'' +
-                ", beingAttackedName='" + beingAttackedName + '\'' +
-                ", atk='" + atk + '\'' +
-                ", hp='" + hp + '\'' +
-                '}';
-    }
+
 }

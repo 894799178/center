@@ -38,12 +38,5 @@ public class AutoClickBean extends  BaseBusinessDataBean{
         this.pointY = pointY;
     }
 
-    @Override
-    public String toString() {
-        return "AutoClickModel{" +
-                "event='" + event + '\'' +
-                ", pointX='" + pointX + '\'' +
-                ", pointY='" + pointY + '\'' +
-                '}';
-    }
+
 }

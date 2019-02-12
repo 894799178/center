@@ -1,14 +1,13 @@
 package com.fish.center.service.impl;
 
-import com.fish.center.utils.DebugPrintUtil;
 import com.fish.center.bean.HttpRequestBean;
 import com.fish.center.bean.UserData;
 import com.fish.center.service.DataProcess;
 import com.fish.center.service.ServiceCenter;
+import com.fish.center.utils.DebugPrintUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
