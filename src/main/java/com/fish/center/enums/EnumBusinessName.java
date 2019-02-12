@@ -1,4 +1,4 @@
-package com.fish.center.Enums;
+package com.fish.center.enums;
 
 /**
  * 业务名字相关的枚举类

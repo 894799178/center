@@ -1,7 +1,10 @@
 package com.fish.center.utils;
 
-import com.fish.center.Enums.EnumBusinessName;
+import com.fish.center.enums.EnumBusinessName;
 
+/**
+ * @author 一条小咸鱼
+ */
 public class EnumUtil {
 
     public static int getValueByName(String name){

@@ -20,8 +20,6 @@ import javax.annotation.Resource;
  */
 @Controller
 public class DataCollectionCenter {
-
-
     @Resource
     DataProcess dataProcess;
 

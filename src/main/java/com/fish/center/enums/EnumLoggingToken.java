@@ -1,4 +1,4 @@
-package com.fish.center.Enums;
+package com.fish.center.enums;
 
 /**
  * @ProjectName: collect

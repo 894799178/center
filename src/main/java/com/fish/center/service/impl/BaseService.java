@@ -1,12 +1,9 @@
 package com.fish.center.service.impl;
 
-import com.fish.center.bean.AutoClickBean;
 import com.fish.center.bean.UserData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
