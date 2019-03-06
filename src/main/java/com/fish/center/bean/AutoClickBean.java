@@ -14,6 +14,36 @@ public class AutoClickBean extends  BaseBusinessDataBean{
 
     private String pointY;
 
+    private String pointXEnd;
+
+    private String pointYEnd;
+
+    private String delay;
+
+    public String getPointXEnd() {
+        return pointXEnd;
+    }
+
+    public void setPointXEnd(String pointXEnd) {
+        this.pointXEnd = pointXEnd;
+    }
+
+    public String getPointYEnd() {
+        return pointYEnd;
+    }
+
+    public void setPointYEnd(String pointYEnd) {
+        this.pointYEnd = pointYEnd;
+    }
+
+    public String getDelay() {
+        return delay;
+    }
+
+    public void setDelay(String delay) {
+        this.delay = delay;
+    }
+
     public String getEvent() {
         return event;
     }

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fish.center.mapper.DamageBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.fish.center.model.DamageBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="VARCHAR" />
+    <result column="point_y" property="pointY" jdbcType="VARCHAR" />
+    <result column="point_x" property="pointX" jdbcType="VARCHAR" />
+    <result column="damage_number" property="damageNumber" jdbcType="VARCHAR" />
+    <result column="is_crit" property="isCrit" jdbcType="BIT" />
+    <result column="atk" property="atk" jdbcType="VARCHAR" />
+    <result column="hp" property="hp" jdbcType="VARCHAR" />
+    <result column="def" property="def" jdbcType="VARCHAR" />
+    <result column="crit_per" property="critPer" jdbcType="VARCHAR" />
+    <result column="def_ignore" property="defIgnore" jdbcType="VARCHAR" />
+    <result column="def_ignore_per" property="defIgnorePer" jdbcType="VARCHAR" />
+    <result column="damage_increase_per" property="damageIncreasePer" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type_id, point_y, point_x, damage_number, is_crit, atk, hp, def, crit_per, def_ignore, 
+    def_ignore_per, damage_increase_per
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_damage
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_damage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fish.center.model.DamageBean" >
+    insert into t_damage (id, type_id, point_y, 
+      point_x, damage_number, is_crit, 
+      atk, hp, def, crit_per, 
+      def_ignore, def_ignore_per, damage_increase_per
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=VARCHAR}, #{pointY,jdbcType=VARCHAR}, 
+      #{pointX,jdbcType=VARCHAR}, #{damageNumber,jdbcType=VARCHAR}, #{isCrit,jdbcType=BIT}, 
+      #{atk,jdbcType=VARCHAR}, #{hp,jdbcType=VARCHAR}, #{def,jdbcType=VARCHAR}, #{critPer,jdbcType=VARCHAR}, 
+      #{defIgnore,jdbcType=VARCHAR}, #{defIgnorePer,jdbcType=VARCHAR}, #{damageIncreasePer,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fish.center.model.DamageBean" >
+    insert into t_damage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="pointY != null" >
+        point_y,
+      </if>
+      <if test="pointX != null" >
+        point_x,
+      </if>
+      <if test="damageNumber != null" >
+        damage_number,
+      </if>
+      <if test="isCrit != null" >
+        is_crit,
+      </if>
+      <if test="atk != null" >
+        atk,
+      </if>
+      <if test="hp != null" >
+        hp,
+      </if>
+      <if test="def != null" >
+        def,
+      </if>
+      <if test="critPer != null" >
+        crit_per,
+      </if>
+      <if test="defIgnore != null" >
+        def_ignore,
+      </if>
+      <if test="defIgnorePer != null" >
+        def_ignore_per,
+      </if>
+      <if test="damageIncreasePer != null" >
+        damage_increase_per,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="pointY != null" >
+        #{pointY,jdbcType=VARCHAR},
+      </if>
+      <if test="pointX != null" >
+        #{pointX,jdbcType=VARCHAR},
+      </if>
+      <if test="damageNumber != null" >
+        #{damageNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isCrit != null" >
+        #{isCrit,jdbcType=BIT},
+      </if>
+      <if test="atk != null" >
+        #{atk,jdbcType=VARCHAR},
+      </if>
+      <if test="hp != null" >
+        #{hp,jdbcType=VARCHAR},
+      </if>
+      <if test="def != null" >
+        #{def,jdbcType=VARCHAR},
+      </if>
+      <if test="critPer != null" >
+        #{critPer,jdbcType=VARCHAR},
+      </if>
+      <if test="defIgnore != null" >
+        #{defIgnore,jdbcType=VARCHAR},
+      </if>
+      <if test="defIgnorePer != null" >
+        #{defIgnorePer,jdbcType=VARCHAR},
+      </if>
+      <if test="damageIncreasePer != null" >
+        #{damageIncreasePer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fish.center.model.DamageBean" >
+    update t_damage
+    <set >
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="pointY != null" >
+        point_y = #{pointY,jdbcType=VARCHAR},
+      </if>
+      <if test="pointX != null" >
+        point_x = #{pointX,jdbcType=VARCHAR},
+      </if>
+      <if test="damageNumber != null" >
+        damage_number = #{damageNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isCrit != null" >
+        is_crit = #{isCrit,jdbcType=BIT},
+      </if>
+      <if test="atk != null" >
+        atk = #{atk,jdbcType=VARCHAR},
+      </if>
+      <if test="hp != null" >
+        hp = #{hp,jdbcType=VARCHAR},
+      </if>
+      <if test="def != null" >
+        def = #{def,jdbcType=VARCHAR},
+      </if>
+      <if test="critPer != null" >
+        crit_per = #{critPer,jdbcType=VARCHAR},
+      </if>
+      <if test="defIgnore != null" >
+        def_ignore = #{defIgnore,jdbcType=VARCHAR},
+      </if>
+      <if test="defIgnorePer != null" >
+        def_ignore_per = #{defIgnorePer,jdbcType=VARCHAR},
+      </if>
+      <if test="damageIncreasePer != null" >
+        damage_increase_per = #{damageIncreasePer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fish.center.model.DamageBean" >
+    update t_damage
+    set type_id = #{typeId,jdbcType=VARCHAR},
+      point_y = #{pointY,jdbcType=VARCHAR},
+      point_x = #{pointX,jdbcType=VARCHAR},
+      damage_number = #{damageNumber,jdbcType=VARCHAR},
+      is_crit = #{isCrit,jdbcType=BIT},
+      atk = #{atk,jdbcType=VARCHAR},
+      hp = #{hp,jdbcType=VARCHAR},
+      def = #{def,jdbcType=VARCHAR},
+      crit_per = #{critPer,jdbcType=VARCHAR},
+      def_ignore = #{defIgnore,jdbcType=VARCHAR},
+      def_ignore_per = #{defIgnorePer,jdbcType=VARCHAR},
+      damage_increase_per = #{damageIncreasePer,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <insert id ="insertBatch" parameterType="java.util.List" >
+    <selectKey resultType ="java.lang.Integer" keyProperty= "id"
+               order= "AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey >
+    insert into t_damage
+    (type_Id, point_x, point_y,damage_number,is_crit,atk,hp,def,crit_per,def_ignore,def_ignore_per,crit_damage_per)
+    values
+    <foreach collection ="list" item="damageBean" index= "index" separator =",">
+      (
+      #{damageBean.typeId},
+      #{damageBean.pointX},
+      #{damageBean.pointY},
+      #{damageBean.damageNumber},
+      #{damageBean.isCrit},
+      #{damageBean.atk},
+      #{damageBean.hp},
+      #{damageBean.def},
+      #{damageBean.critPer},
+      #{damageBean.defIgnore},
+      #{damageBean.defIgnorePer},
+      #{damageBean.critDamagePer}
+      )
+    </foreach >
+  </insert >
+  <select id="selectByTypeId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_damage
+    where type_Id = #{typeId} order by id
+  </select>
+
+  <delete id="deleteByTypeId" parameterType="java.lang.String" >
+    delete from t_damage
+    where type_Id = #{typeId}
+  </delete>
+
+</mapper>

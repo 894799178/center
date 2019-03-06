@@ -55,9 +55,29 @@
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>第' +
-                        (this.x+1) + '次<br/>伤害:' +
-                        this.y+"-->"+arrIsCrit[this.x] ;
+                    // return '<b>' + this.series.name + '</b><br/>第' +
+                    //     (this.x+1) + '次<br/>伤害:' +
+                    //     this.y+"-->"+arrIsCrit[this.x] ;
+                    //<b>' + this.series.name + '</b><br/>
+                    let isCrit = false;
+                    let str;
+                    if(objects.length>0){
+                        if(objects[this.x-1]){
+                            if(objects[this.x-1].isCrit){
+                                isCrit = true;
+                            }
+                            str  = '第'+ this.x + '次<br/>伤害:'+ this.y+"-->"+(isCrit?"暴击":"未暴击")
+                            str += "<br/>攻击力:"+ objects[this.x-1].atk
+                                    +"<br/>生命值:"+objects[this.x-1].hp
+                                    +"<br/>防御力:"+objects[this.x-1].def
+                                    +"<br/>破甲:"+objects[this.x-1].defIgnore
+                                    +"<br/>额外破甲:"+objects[this.x-1].defIgnorePer
+                                    +"<br/>暴击率:"+objects[this.x-1].critPer
+                                    +"<br/>暴击伤害加成(默认200%):"+objects[this.x-1]. critDamagePer
+                        }
+
+                    }
+                    return str;
                 }
             },
             legend: {
@@ -88,11 +108,10 @@
 					$.each(data,function(index,item){
                         objects.push(item);
 						var x =  parseInt(item.pointX);
-						var y = parseInt(item.pointY);
-                        arrIsCrit[count++] = item.isCrit;
+						var y = parseInt(item.damageNumber);
                         totalDamage+=y;
                         arr.push({
-                            x: x,
+                            x: x+1,
                             y: y
                         })
 					})

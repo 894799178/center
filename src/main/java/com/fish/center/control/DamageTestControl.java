@@ -1,5 +1,6 @@
 package com.fish.center.control;
 
+import com.fish.center.model.DamageBean;
 import com.fish.center.model.DamageData;
 import com.fish.center.service.DamageTestService;
 import com.fish.center.service.ServiceCenter;
@@ -39,15 +40,15 @@ public class DamageTestControl {
     }
     @PostMapping(value = "/updateData")
     @ResponseBody
-    public void updateData(@RequestBody List<DamageData> datas){
+    public void updateData(@RequestBody List<DamageBean> datas){
         damageTestService.batchCover(datas);
     }
 
     @RequestMapping(value="/getDamageDataByTypeId")
     @ResponseBody
-    public List<DamageData> getDamageDataByTypeId(String typeId){
-        List<DamageData> list =  damageTestService.getDamageDataByTypeId(typeId);
-        for (DamageData dd:list) {
+    public List<DamageBean> getDamageDataByTypeId(String typeId){
+        List<DamageBean> list =  damageTestService.getDamageDataByTypeId(typeId);
+        for (DamageBean dd:list) {
             System.out.println(dd);
         }
         return list;

@@ -57,15 +57,9 @@
                                totalDamage+= parseInt(y);
                                $("#atk").text("攻击力:"+value.atk);
                                $("#hp").text("血量:"+value.hp);
-                               pointData.push (x);
-                               pointData.push (y);
-                               objects.push({
-                                   isCrit:value.isCrit,
-                                   atk:value.atk,
-                                   hp:value.hp,
-                                   x:x,
-                                   y:y
-                               })
+                               value["pointX"] = x
+                               pointData.push (value);
+                               objects.push(value)
                                series.addPoint([++count,y], true, true);
                                activeLastPointToolip(chart);
                            })
@@ -91,7 +85,26 @@
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>第'+ this.x + '次<br/>伤害:'+ this.y+"-->"+(objects.length>0?objects[this.x-1].isCrit:0);
+                    //<b>' + this.series.name + '</b><br/>
+                    let isCrit = false;
+                    let str;
+                    if(objects.length>0){
+                        if(objects[this.x-1]){
+                            if(objects[this.x-1].isCrit == "true"){
+                                isCrit = true;
+                            }
+                            str  = '第'+ this.x + '次<br/>伤害:'+ this.y+"-->"+(isCrit?"暴击":"未暴击")
+                            str += "<br/>攻击力:"+ objects[this.x-1].atk
+                                    +"<br/>生命值:"+objects[this.x-1].hp
+                                    +"<br/>防御力:"+objects[this.x-1].def
+                                    +"<br/>破甲:"+objects[this.x-1].defIgnore
+                                    +"<br/>额外破甲:"+objects[this.x-1].defIgnorePer
+                                    +"<br/>暴击率:"+objects[this.x-1].critPer
+                                    +"<br/>暴击伤害加成(默认200%):"+objects[this.x-1]. critDamagePer
+                        }
+
+                    }
+                    return str;
                 }
             },
             legend: {
@@ -117,21 +130,15 @@
             return result;
         }
         function print(){
-            var arr =  new Array();
             var typeId =  $("#typeId").val()
             if(typeId.length <=0){
                 alert("请输入typeId");
                 return;
             }
-            for(var i = 0,i1=0;i<pointData.length;i+=2,i1++){
-                var obj = new Object()
-                obj.pointX = pointData[i];
-                obj.isCrit = arrIsCrit[i1];
-                obj.pointY = pointData[i+1];
-                obj.typeId = typeId;
-                arr.push(obj);
-            }
-            requestFormAjax("http://localhost:8080/damageTestControl/updateData",false,JSON.stringify(arr));
+            $.each(pointData,function(index,value){
+                value["typeId"] = typeId
+            })
+            requestFormAjax("http://localhost:8080/damageTestControl/updateData",false,JSON.stringify(pointData));
         }
         //页面加载完后,在加载js
         $(function (){

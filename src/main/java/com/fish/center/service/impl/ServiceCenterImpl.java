@@ -122,7 +122,7 @@ public class ServiceCenterImpl extends BaseService implements ServiceCenter {
      */
     private <T> String jsonList2String(List<String> list,Class<T> clazz){
         List<T> tempList = new ArrayList<>();
-        if(tempList!= null){
+        if(list!= null){
             for (String item:list) {
                 tempList.add(JSON.parseObject(item, clazz));
             }

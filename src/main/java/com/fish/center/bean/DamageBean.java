@@ -9,7 +9,7 @@ package com.fish.center.bean;
  * @Date: 2019/1/30 16:10
  * @Version: 1.0
  */
-public class DamageBean extends  BaseBusinessDataBean {
+public class DamageBean extends HeroAttribute {
     /**
      * 伤害的数值
      */
@@ -22,14 +22,6 @@ public class DamageBean extends  BaseBusinessDataBean {
      *  被攻击单位的名字
      */
     private String beingAttackedName;
-    /**
-     * 攻击力
-     */
-    private String atk;
-    /**
-     * 当前血量
-     */
-    private String hp;
 
     public String getDamageNumber() {
         return damageNumber;
@@ -53,22 +45,6 @@ public class DamageBean extends  BaseBusinessDataBean {
 
     public void setBeingAttackedName(String beingAttackedName) {
         this.beingAttackedName = beingAttackedName;
-    }
-
-    public String getAtk() {
-        return atk;
-    }
-
-    public void setAtk(String atk) {
-        this.atk = atk;
-    }
-
-    public String getHp() {
-        return hp;
-    }
-
-    public void setHp(String hp) {
-        this.hp = hp;
     }
 
 

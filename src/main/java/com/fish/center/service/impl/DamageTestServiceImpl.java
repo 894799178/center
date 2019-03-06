@@ -1,6 +1,8 @@
 package com.fish.center.service.impl;
 
+import com.fish.center.mapper.DamageBeanMapper;
 import com.fish.center.mapper.DamageDataMapper;
+import com.fish.center.model.DamageBean;
 import com.fish.center.model.DamageData;
 import com.fish.center.service.DamageTestService;
 import org.springframework.stereotype.Service;
@@ -21,17 +23,17 @@ import java.util.List;
 public class DamageTestServiceImpl implements DamageTestService {
 
     @Resource
-    DamageDataMapper damageDataMapper;
+    DamageBeanMapper damageBeanMapper;
 
     @Override
-    public void batchCover(List<DamageData> list) {
+    public void batchCover(List<DamageBean> list) {
         //插入数据前,先把旧数据删除
-        damageDataMapper.deleteByTypeId(list.get(0).getTypeId());
-        damageDataMapper.insertBatch(list);
+        damageBeanMapper.deleteByTypeId(list.get(0).getTypeId());
+        damageBeanMapper.insertBatch(list);
     }
 
     @Override
-    public List<DamageData> getDamageDataByTypeId(String typeId) {
-        return damageDataMapper.selectByTypeId(typeId);
+    public List<DamageBean> getDamageDataByTypeId(String typeId) {
+        return damageBeanMapper.selectByTypeId(typeId);
     }
 }

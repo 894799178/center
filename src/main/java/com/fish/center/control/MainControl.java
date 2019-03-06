@@ -23,7 +23,6 @@ public class MainControl {
     @RequestMapping("/")
     public String index(HttpSession session){
         System.out.println("获取token-->"+session.getAttribute("token"));
-
         return "index.html";
     }
 
@@ -38,7 +37,7 @@ public class MainControl {
     @RequestMapping("/getCurrToken")
     @ResponseBody
     public String getCurrToken(HttpSession session){
-        Map<String,String> map = new HashMap<>();
+        Map<String,String> map = new HashMap<>(1);
         String token = (String) session.getAttribute("token");
         map.put("token",token);
         return JSON.toJSONString(map);
