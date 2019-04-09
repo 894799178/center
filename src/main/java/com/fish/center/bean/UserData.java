@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * @ProjectName: center
@@ -18,9 +21,11 @@ import java.util.List;
 public class UserData extends BaseHttpBean{
 
     /**
-     * 存储缓存数据
+     * 存储缓存数据,
+     * 5555555 不想改代码了.性能差就性能差吧.
+     * 能跑就行
      */
-    private List<String> data = new LinkedList<>();
+    private Queue<String> data = new ConcurrentLinkedQueue<>();
     /**
      *  游标指针,指向当前所需要覆盖的位置
      */
@@ -30,11 +35,11 @@ public class UserData extends BaseHttpBean{
      */
     private int turns = -1;
 
-    public List<String>  getData() {
+    public Queue<String> getData() {
         return data;
     }
 
-    public void setData(LinkedList data) {
+    public void setData(Queue<String> data) {
         this.data = data;
     }
 

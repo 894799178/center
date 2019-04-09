@@ -11,10 +11,8 @@ import com.fish.center.utils.EnumUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * @ProjectName: center
@@ -29,32 +27,32 @@ import java.util.Map;
 public class ServiceCenterImpl extends BaseService implements ServiceCenter {
 
     @Resource
-    Map<String, List<String>> autoClickBeans;
+    Map<String,Queue<String>> autoClickBeans;
 
     @Resource
-    Map<String, List<String>> damageTestBeans;
+    Map<String, Queue<String>> damageTestBeans;
 
 
     @Override
     public void dataDisposeSorting(String token) {
         UserData userDataByToken = this.getUserDataByToken(token);
-        LinkedList<String> data = (LinkedList<String>) userDataByToken.getData();
+        Queue<String> data =  userDataByToken.getData();
         while(!data.isEmpty()){
-            String s = data.pollFirst();
+            String s = data.poll();
             this.dataSorting(s,token);
         }
-        DebugPrintUtil.printNotNull(autoClickBeans.get(token));
+       // DebugPrintUtil.printNotNull(autoClickBeans.get(token));
     }
 
     @Override
     public String getAutoClickMessage(String token) {
-        List<String> strings = autoClickBeans.get(token);
+        Queue<String> strings = autoClickBeans.get(token);
         return this.list2String(strings,AutoClickBean.class);
     }
 
     @Override
     public String getDamageMessage(String token) {
-        List<String> strings = damageTestBeans.get(token);
+        Queue<String>strings = damageTestBeans.get(token);
         return this.list2String(strings,DamageBean.class);
     }
 
@@ -66,7 +64,7 @@ public class ServiceCenterImpl extends BaseService implements ServiceCenter {
      * @param <T>
      * @return
      */
-    private <T> String list2String(List<String> list,Class<T> clazz){
+    private  <T> String list2String(Queue<String> list,Class<T> clazz){
         String result = null;
         if(list != null){
             result  = this.jsonList2String(list,clazz);
@@ -103,10 +101,10 @@ public class ServiceCenterImpl extends BaseService implements ServiceCenter {
      * @param substring
      * @param map
      */
-    private void addDataByMap(String token,String substring, Map<String, List<String>> map){
-        List<String> temp = map.get(token);
+    private void addDataByMap(String token,String substring, Map<String,Queue<String>> map){
+        Queue<String> temp = map.get(token);
             if(temp == null){
-                temp =  new LinkedList<>();
+                temp =  new ConcurrentLinkedQueue<>();
                 map.put(token,temp);
             }
         temp.add(substring);
@@ -120,13 +118,12 @@ public class ServiceCenterImpl extends BaseService implements ServiceCenter {
      * @param <T>
      * @return
      */
-    private <T> String jsonList2String(List<String> list,Class<T> clazz){
+    private <T> String jsonList2String(Queue<String>list,Class<T> clazz){
         List<T> tempList = new ArrayList<>();
-        if(list!= null){
+        if(list!= null && list.size()>0){
             for (String item:list) {
                 tempList.add(JSON.parseObject(item, clazz));
             }
-
         }
         return JSON.toJSONString(tempList);
     }

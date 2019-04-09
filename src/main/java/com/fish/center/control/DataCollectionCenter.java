@@ -22,12 +22,11 @@ import javax.annotation.Resource;
 public class DataCollectionCenter {
     @Resource
     DataProcess dataProcess;
-
     @RequestMapping("/submitData")
     @ResponseBody
     public String submitData(@RequestBody HttpRequestBean httpRequestBean){
-        System.out.println("进入控制层");
-        System.out.println("token --->"+httpRequestBean.getToken());
+        //System.out.println("进入控制层");
+      //  System.out.println("token --->"+httpRequestBean.getToken());
         dataProcess.storeData(httpRequestBean);
         return "200";
     }

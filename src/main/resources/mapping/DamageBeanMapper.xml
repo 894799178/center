@@ -18,7 +18,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, type_id, point_y, point_x, damage_number, is_crit, atk, hp, def, crit_per, def_ignore, 
-    def_ignore_per, damage_increase_per
+    def_ignore_per, damage_increase_per,crit_damage_per,damage_reduction_per
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -192,7 +192,7 @@
       SELECT LAST_INSERT_ID()
     </selectKey >
     insert into t_damage
-    (type_Id, point_x, point_y,damage_number,is_crit,atk,hp,def,crit_per,def_ignore,def_ignore_per,crit_damage_per)
+    (type_Id, point_x, point_y,damage_number,is_crit,atk,hp,def,crit_per,def_ignore,def_ignore_per,crit_damage_per,damage_reduction_per,damage_increase_per)
     values
     <foreach collection ="list" item="damageBean" index= "index" separator =",">
       (
@@ -207,7 +207,9 @@
       #{damageBean.critPer},
       #{damageBean.defIgnore},
       #{damageBean.defIgnorePer},
-      #{damageBean.critDamagePer}
+      #{damageBean.critDamagePer},
+      #{damageBean.damageReductionPer},
+      #{damageBean.damageIncreasePer}
       )
     </foreach >
   </insert >

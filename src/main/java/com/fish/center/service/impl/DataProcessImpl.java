@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @ProjectName: center
@@ -42,7 +43,7 @@ public class DataProcessImpl extends BaseService implements DataProcess {
             UserData userData = globalMap.get(token);
             this.addDataByStringList(userData,list);
         }
-        DebugPrintUtil.printNotNull(list);
+//        DebugPrintUtil.printNotNull(list);
         serviceCenter.dataDisposeSorting(token);
     }
 
@@ -53,7 +54,7 @@ public class DataProcessImpl extends BaseService implements DataProcess {
      * @return
      */
     private UserData addDataByStringList(UserData userData,List<String> list){
-        List data = userData.getData();
+        Queue data = userData.getData();
         int cursor = userData.getCursor();
         for (String item:list) {
             data.add(item);

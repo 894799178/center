@@ -1,5 +1,8 @@
 package com.fish.center.model;
 
+/**
+ * 数据库的伤害测试bean用于持久化的model
+ */
 public class DamageBean {
     private Integer id;
 
@@ -26,6 +29,31 @@ public class DamageBean {
     private String defIgnorePer;
 
     private String critDamagePer;
+    /**
+     * 全伤害增加
+     */
+    private String damageIncreasePer;
+    /**
+     * 全伤害减免
+     */
+    private String  damageReductionPer;
+
+
+    public String getDamageIncreasePer() {
+        return damageIncreasePer;
+    }
+
+    public void setDamageIncreasePer(String damageIncreasePer) {
+        this.damageIncreasePer = damageIncreasePer;
+    }
+
+    public String getDamageReductionPer() {
+        return damageReductionPer;
+    }
+
+    public void setDamageReductionPer(String damageReductionPer) {
+        this.damageReductionPer = damageReductionPer;
+    }
 
     public Integer getId() {
         return id;

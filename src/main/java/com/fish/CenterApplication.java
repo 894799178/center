@@ -18,7 +18,7 @@ public class CenterApplication {
         SpringApplication.run(CenterApplication.class, args);
     }
 
-   final static  Map<String, List<AutoClickBean>> autoClickBeans = new HashMap<>(5);
+   final static  Map<String, Queue<AutoClickBean>> autoClickBeans = new HashMap<>(5);
     /**
      * 全局的bean
      * @return
@@ -33,7 +33,7 @@ public class CenterApplication {
      * @return
      */
     @Bean(name="autoClickBeans")
-    public  Map<String, List<AutoClickBean>> getAutoClickBean(){
+    public  Map<String, Queue<AutoClickBean>> getAutoClickBean(){
         return new HashMap<>(5);
     }
 
@@ -43,7 +43,7 @@ public class CenterApplication {
      * @return
      */
     @Bean(name="damageTestBeans")
-    public  Map<String, List<DamageBean>> getDamageTestBean(){
+    public  Map<String, Queue<DamageBean>> getDamageTestBean(){
         return new HashMap<>(5);
     }
 

@@ -39,6 +39,32 @@ public class HeroAttribute  extends  BaseBusinessDataBean{
      */
     private String critDamagePer;
 
+    /**
+     * 全伤害增加百分比
+     */
+    private String damageIncreasePer;
+    /**
+     * 全伤害减免百分比
+     */
+    private String  damageReductionPer;
+
+    
+
+    public String getDamageIncreasePer() {
+        return damageIncreasePer;
+    }
+
+    public void setDamageIncreasePer(String damageIncreasePer) {
+        this.damageIncreasePer = damageIncreasePer;
+    }
+
+    public String getDamageReductionPer() {
+        return damageReductionPer;
+    }
+
+    public void setDamageReductionPer(String damageReductionPer) {
+        this.damageReductionPer = damageReductionPer;
+    }
 
     public String getCritDamagePer() {
         return critDamagePer;

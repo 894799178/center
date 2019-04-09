@@ -48,9 +48,9 @@ public class DamageTestControl {
     @ResponseBody
     public List<DamageBean> getDamageDataByTypeId(String typeId){
         List<DamageBean> list =  damageTestService.getDamageDataByTypeId(typeId);
-        for (DamageBean dd:list) {
-            System.out.println(dd);
-        }
+//        for (DamageBean dd:list) {
+//            System.out.println(dd);
+//        }
         return list;
     }
 
